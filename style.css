@@ -915,3 +915,120 @@ section {
         grid-template-columns: 1fr;
     }
 }
+
+/* --- CERTIFICAÇÕES --- */
+.certifications {
+    border-top: 1px solid var(--border-color);
+}
+
+.certifications-description {
+    font-size: clamp(1.1rem, 2vw, 1.25rem);
+    line-height: 1.7;
+    color: var(--text-secondary);
+    max-width: 900px;
+    margin-bottom: 4rem;
+}
+
+.certifications-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.certification-card {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    padding: 3rem 2.5rem !important;
+}
+
+.cert-icon {
+    font-size: 2.2rem;
+    line-height: 1;
+}
+
+.cert-info {
+    flex: 1;
+}
+
+.cert-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    line-height: 1.35;
+}
+
+.cert-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.cert-institution {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--accent-color);
+}
+
+.cert-date-hours {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.cert-desc {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 1.75rem;
+}
+
+.cert-topics h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.cert-topics ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.cert-topics li {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    position: relative;
+    padding-left: 1.25rem;
+}
+
+.cert-topics li::before {
+    content: "•";
+    color: var(--accent-color);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+.certifications-outro {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    max-width: 800px;
+    margin-top: 6rem;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    border-top: 1px solid var(--border-color);
+    padding-top: 3rem;
+}
+
+@media (max-width: 1024px) {
+    .certifications-grid {
+        grid-template-columns: 1fr;
+    }
+}
