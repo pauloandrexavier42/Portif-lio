@@ -124,7 +124,9 @@ section {
 
 .logo-img {
     height: 2rem;
-    width: auto;
+    width: 2rem;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 .nav-list {
