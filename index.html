@@ -279,15 +279,17 @@
   .hero-content h1{
     font-family:'Space Grotesk', sans-serif;
     font-weight: 700;
-    font-size: clamp(34px, 4.4vw, 56px);
-    line-height: 1.08;
+    font-size: clamp(28px, 3.6vw, 48px);
+    line-height: 1.15;
     letter-spacing: -0.02em;
     color: var(--ink);
     margin-bottom: 8px;
+    white-space: nowrap;
   }
   .hero-content h1 .age{
     font-weight: 500;
     color: var(--muted);
+    white-space: nowrap;
   }
   .hero-role{
     font-family:'Space Grotesk', sans-serif;
@@ -306,7 +308,7 @@
   }
 
   .skills-block{
-    margin-bottom: 40px;
+    margin-bottom: 0;
   }
   .skills-label{
     font-family:'JetBrains Mono', monospace;
@@ -344,13 +346,6 @@
     border-color: var(--indigo);
   }
 
-  .hero-actions{
-    display:flex;
-    align-items:center;
-    gap: 18px;
-    flex-wrap: wrap;
-  }
-
   /* ---- Photo: framed like a selected image asset ---- */
   .hero-photo{
     position: relative;
@@ -360,7 +355,7 @@
   .photo-frame{
     position: relative;
     width: 100%;
-    max-width: 380px;
+    max-width: 300px;
     aspect-ratio: 4 / 5;
     border-radius: 18px;
     overflow: hidden;
@@ -427,10 +422,14 @@
       gap: 48px;
     }
     .hero-photo{ order: -1; }
-    .photo-frame{ max-width: 280px; margin: 0 auto; }
+    .photo-frame{ max-width: 220px; margin: 0 auto; }
   }
   @media (max-width: 640px){
     .hero{ padding: 56px 20px 80px; }
+    .hero-content h1{
+      white-space: normal;
+      font-size: clamp(26px, 7vw, 34px);
+    }
   }
 
   /* ---------- CERTIFICADOS ---------- */
@@ -761,11 +760,6 @@
           <span class="skill-tag">Benchmarking</span>
           <span class="skill-tag">IA</span>
         </div>
-      </div>
-
-      <div class="hero-actions">
-        <a href="#contato" class="cta-btn">Vamos conversar</a>
-        <span class="status-pill"><span class="dot"></span>Disponível para projetos</span>
       </div>
     </div>
 
