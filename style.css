@@ -2,33 +2,33 @@
 
 /* --- DESIGN SYSTEM TOKENS --- */
 :root {
-    --bg-color: #0A0A0A;
-    --surface-color: #121212;
-    --surface-hover: #161616;
+    --bg-color: #F7F7FB;
+    --surface-color: #FFFFFF;
+    --surface-hover: #F0F0F6;
     
     /* Borders */
-    --border-color: rgba(255, 255, 255, 0.05);
-    --border-hover: rgba(255, 255, 255, 0.12);
-    --border-active: rgba(99, 102, 241, 0.3);
+    --border-color: #E3E3EC;
+    --border-hover: #D0D0DC;
+    --border-active: rgba(84, 87, 229, 0.35);
     
     /* Typography */
-    --text-primary: #FFFFFF;
-    --text-secondary: #9FA2A6;
-    --text-muted: #646669;
+    --text-primary: #14141A;
+    --text-secondary: #45454F;
+    --text-muted: #85859A;
     --font-heading: 'Outfit', sans-serif;
     --font-body: 'Inter', sans-serif;
     
     /* Accents */
-    --accent-color: #6366F1;
-    --accent-color-rgb: 99, 102, 241;
-    --accent-gradient: linear-gradient(135deg, #6366F1 0%, #A855F7 100%);
-    --accent-glow: 0 0 30px rgba(99, 102, 241, 0.15);
+    --accent-color: #5457E5;
+    --accent-color-rgb: 84, 87, 229;
+    --accent-gradient: linear-gradient(135deg, #5457E5 0%, #6B6EF0 100%);
+    --accent-glow: 0 0 30px rgba(84, 87, 229, 0.12);
     
     /* Transitions & Shadows */
     --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     --transition-quick: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-    --card-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.7);
-    --card-shadow-hover: 0 20px 40px -20px rgba(99, 102, 241, 0.15);
+    --card-shadow: 0 10px 30px -15px rgba(20, 20, 26, 0.08);
+    --card-shadow-hover: 0 20px 40px -20px rgba(84, 87, 229, 0.12);
 }
 
 /* --- RESET & BASIC STYLES --- */
@@ -99,7 +99,7 @@ section {
 }
 
 .header.scrolled {
-    background: rgba(10, 10, 10, 0.75);
+    background: rgba(247, 247, 251, 0.85);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border-color);

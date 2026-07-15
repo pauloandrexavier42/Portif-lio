@@ -1,509 +1,134 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Case Study: Arena XT - Site de marcaÃ§Ã£o de horÃ¡rios de quadra por Paulo AndrÃ© Xavier.">
-<title>Arena XT | Case Study | Paulo AndrÃ©</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg: #F7F7FB;
-    --ink: #14141A;
-    --indigo: #5457E5;
-    --indigo-dim: #EDEDFC;
-    --coral: #FF6B4A;
-    --muted: #85859A;
-    --line: #E3E3EC;
-    --white: #FFFFFF;
-    --header-h: 84px;
-  }
-
-  *{ margin:0; padding:0; box-sizing:border-box; }
-  html{ scroll-behavior:smooth; }
-  body{
-    background: var(--bg);
-    color: var(--ink);
-    font-family: 'Inter', sans-serif;
-  }
-  a{ text-decoration:none; color:inherit; }
-
-  /* ---------- HEADER ---------- */
-  .site-header{
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    width: 100%;
-    height: var(--header-h);
-    display:flex;
-    align-items:center;
-    background: rgba(247,247,251,0.7);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border-bottom: 1px solid var(--line);
-    transition: box-shadow .3s ease;
-  }
-  .site-header.scrolled{
-    box-shadow: 0 8px 30px rgba(20,20,26,0.06);
-  }
-  .header-inner{
-    width:100%;
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 40px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap: 24px;
-  }
-  .logo-link{
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-shrink: 0;
-  }
-  .logo-img{
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    object-fit: cover;
-    display: block;
-  }
-  .logo-name{
-    font-family:'Space Grotesk', sans-serif;
-    font-size: 18px;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-  }
-  .header-right{
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .main-nav{
-    display:flex;
-    align-items:center;
-    gap: 4px;
-  }
-  .main-nav a{
-    position:relative;
-    font-size: 14.5px;
-    font-weight: 500;
-    color: var(--ink);
-    padding: 10px 16px;
-    border-radius: 8px;
-    transition: color .2s ease;
-  }
-  .main-nav a:not(.cta-btn)::after{
-    content:"";
-    position:absolute;
-    left: 16px;
-    right: 16px;
-    bottom: 6px;
-    height: 2px;
-    background: var(--indigo);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform .25s ease;
-  }
-  .main-nav a:not(.cta-btn):hover{ color: var(--indigo); }
-  .main-nav a:not(.cta-btn):hover::after{ transform: scaleX(1); }
-
-  .cta-btn{
-    font-family:'Space Grotesk', sans-serif;
-    font-weight: 600;
-    font-size: 14.5px;
-    color: var(--white);
-    background: var(--ink);
-    padding: 11px 20px;
-    border-radius: 10px;
-    white-space: nowrap;
-    transition: background .2s ease, transform .2s ease;
-    display: inline-flex;
-    align-items: center;
-  }
-  .cta-btn:hover{
-    background: var(--indigo);
-    transform: translateY(-1px);
-    color: var(--white);
-  }
-  .main-nav .cta-btn{
-    margin-left: 8px;
-    color: var(--white);
-  }
-
-  .menu-toggle{
-    display:none;
-    flex-direction:column;
-    justify-content:center;
-    gap: 5px;
-    width: 40px;
-    height: 40px;
-    background:none;
-    border:none;
-    cursor:pointer;
-  }
-  .menu-toggle span{
-    width: 100%;
-    height: 2px;
-    background: var(--ink);
-    transition: transform .25s ease, opacity .25s ease;
-  }
-  .menu-toggle.open span:nth-child(1){ transform: translateY(7px) rotate(45deg); }
-  .menu-toggle.open span:nth-child(2){ opacity:0; }
-  .menu-toggle.open span:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
-
-  .mobile-nav{
-    position: fixed;
-    inset: var(--header-h) 0 0 0;
-    background: var(--bg);
-    display:flex;
-    flex-direction:column;
-    padding: 32px 40px;
-    gap: 4px;
-    transform: translateY(-8px);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity .25s ease, transform .25s ease;
-    z-index: 90;
-  }
-  .mobile-nav.open{
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-  }
-  .mobile-nav a:not(.cta-btn){
-    font-family:'Space Grotesk', sans-serif;
-    font-size: 28px;
-    font-weight: 600;
-    padding: 16px 0;
-    border-bottom: 1px solid var(--line);
-  }
-  .mobile-nav .cta-btn{
-    margin-top: 24px;
-    text-align: center;
-    justify-content: center;
-    color: var(--white);
-  }
-
-  @media (max-width: 900px){
-    .main-nav{ display:none; }
-    .menu-toggle{ display:flex; }
-  }
-  @media (max-width: 640px){
-    .header-inner{ padding: 0 20px; }
-    .logo-name{ font-size: 16px; }
-  }
-
-  /* ---------- CASE ---------- */
-  .case-wrap{
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 56px 40px 80px;
-  }
-  .back-link{
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--muted);
-    margin-bottom: 36px;
-    transition: color .2s ease, transform .2s ease;
-  }
-  .back-link:hover{
-    color: var(--indigo);
-    transform: translateX(-3px);
-  }
-
-  .eyebrow{
-    display:inline-flex;
-    align-items:center;
-    gap: 8px;
-    font-family:'JetBrains Mono', monospace;
-    font-size: 12px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--indigo);
-    margin-bottom: 16px;
-  }
-  .eyebrow::before{
-    content:"";
-    width: 16px;
-    height: 1px;
-    background: var(--indigo);
-  }
-
-  .case-title{
-    font-family:'Space Grotesk', sans-serif;
-    font-weight: 700;
-    font-size: clamp(36px, 5vw, 56px);
-    letter-spacing: -0.02em;
-    line-height: 1.1;
-    margin-bottom: 36px;
-  }
-
-  .case-meta{
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
-    padding: 28px 0;
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-    margin-bottom: 64px;
-  }
-  .meta-item h4{
-    font-family:'JetBrains Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--muted);
-    font-weight: 500;
-    margin-bottom: 8px;
-  }
-  .meta-item p{
-    font-family:'Space Grotesk', sans-serif;
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--ink);
-  }
-  .meta-item a{
-    color: var(--indigo);
-  }
-  .meta-item a:hover{
-    text-decoration: underline;
-  }
-
-  .case-content{
-    width: 100%;
-  }
-  .case-section{
-    margin-bottom: 56px;
-  }
-  .case-section-title{
-    font-family:'Space Grotesk', sans-serif;
-    font-weight: 700;
-    font-size: clamp(22px, 2.5vw, 28px);
-    letter-spacing: -0.01em;
-    margin-bottom: 16px;
-    padding-left: 14px;
-    border-left: 3px solid var(--indigo);
-  }
-  .case-text{
-    font-size: 16px;
-    line-height: 1.75;
-    color: #45454F;
-  }
-  .case-text strong{
-    color: var(--ink);
-    font-weight: 600;
-  }
-  .case-text a{
-    color: var(--indigo);
-    text-decoration: underline;
-  }
-
-  .logo-panel{
-    margin-top: 28px;
-    background: #0A0A0A;
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    padding: 48px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .logo-panel img{
-    max-width: 240px;
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-
-  .case-cta{
-    margin-top: 28px;
-  }
-
-  /* ---------- FOOTER ---------- */
-  .site-footer{
-    border-top: 1px solid var(--line);
-    padding: 40px;
-  }
-  .footer-inner{
-    max-width: 1280px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px;
-  }
-  .footer-text{
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
-    color: var(--muted);
-  }
-  .footer-role{
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--ink);
-  }
-
-  @media (max-width: 900px){
-    .case-meta{ grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (max-width: 640px){
-    .case-wrap{ padding: 40px 20px 64px; }
-    .case-meta{ grid-template-columns: 1fr; gap: 20px; }
-    .logo-panel{ padding: 32px 24px; }
-    .footer-inner{
-      flex-direction: column;
-      text-align: center;
-    }
-    .site-footer{ padding: 32px 20px; }
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Case Study: Arena XT - Site de marcação de horários de quadra por Paulo André Xavier.">
+    <title>Arena XT | Case Study | Paulo André</title>
+    
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 
-<header class="site-header" id="siteHeader">
-  <div class="header-inner">
-    <a href="../index.html" class="logo-link">
-      <img src="../assets/paulo-andre.png" alt="Paulo AndrÃ©" class="logo-img">
-      <span class="logo-name">Paulo AndrÃ©</span>
-    </a>
+    <header class="header scrolled" id="header">
+        <div class="container header-container">
+            <a href="../index.html" class="logo-link">
+                <img src="../assets/paulo-andre.png" alt="Paulo André" class="logo-img">
+                <span>Paulo André</span>
+            </a>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="../index.html#sobre" class="nav-link">Sobre</a></li>
+                    <li><a href="../index.html#projetos" class="nav-link">Projetos</a></li>
+                    <li><a href="../index.html#certificados" class="nav-link">Certificados</a></li>
+                    <li><a href="../index.html#contato" class="nav-link">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-    <div class="header-right">
-      <nav class="main-nav">
-        <a href="../index.html#sobre">Sobre</a>
-        <a href="../index.html#projetos">Projetos</a>
-        <a href="../index.html#certificados">Certificados</a>
-        <a href="../index.html#contato" class="cta-btn">Vamos conversar</a>
-      </nav>
-      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </div>
-</header>
+    <main>
+        
+        <section class="case-hero">
+            <div class="container">
+                <a href="../index.html#projetos" class="back-link">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                    Voltar para Projetos
+                </a>
+                
+                <span class="case-category">Web App · Marcação de Quadra</span>
+                <h1 class="case-title">Arena XT</h1>
+                
+                <div class="case-meta">
+                    <div class="meta-item">
+                        <h4>Função</h4>
+                        <p>UX/UI · Produto com IA</p>
+                    </div>
+                    <div class="meta-item">
+                        <h4>Tipo</h4>
+                        <p>Agendamento de quadra</p>
+                    </div>
+                    <div class="meta-item">
+                        <h4>Ferramentas</h4>
+                        <p>IA, Figma, Vercel</p>
+                    </div>
+                    <div class="meta-item">
+                        <h4>Link do Projeto</h4>
+                        <p><a href="https://futev-lei.vercel.app/" target="_blank" rel="noopener noreferrer" style="text-decoration: underline; color: var(--accent-color);">Visitar Site &rarr;</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<nav class="mobile-nav" id="mobileNav">
-  <a href="../index.html#sobre">Sobre</a>
-  <a href="../index.html#projetos">Projetos</a>
-  <a href="../index.html#certificados">Certificados</a>
-  <a href="../index.html#contato" class="cta-btn">Vamos conversar</a>
-</nav>
+        <section class="case-body" style="padding-top: 0;">
+            <div class="container">
+                <div class="case-content-wrapper">
+                    
+                    <div class="case-section reveal">
+                        <h2 class="case-section-title">1. Visão Geral</h2>
+                        <p class="case-text">
+                            O <strong>Arena XT</strong> é um site feito com apoio de IA focado na marcação de horários de uma quadra existente.
+                            A proposta é digitalizar o agendamento ? normalmente feito por WhatsApp ou de forma informal ?
+                            em uma interface clara para o jogador consultar disponibilidade e reservar o horário desejado.
+                        </p>
+                        <div style="margin-top: 2.5rem; background: #0A0A0A; border: 1px solid var(--border-color); border-radius: 16px; padding: 3rem; display: flex; justify-content: center; align-items: center;">
+                            <img src="../assets/arena-xt-logo.png" alt="Logo Arena XT" style="max-width: 260px; width: 100%; height: auto;">
+                        </div>
+                    </div>
 
-<main class="case-wrap">
-  <a href="../index.html#projetos" class="back-link">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-    Voltar para Projetos
-  </a>
+                    <div class="case-section reveal">
+                        <h2 class="case-section-title">2. Problema</h2>
+                        <p class="case-text">
+                            Quem administra a quadra e quem joga costuma depender de mensagens e confirmações manuais.
+                            Isso gera conflito de horários, demora na resposta e falta de visão clara sobre o que já está reservado.
+                        </p>
+                    </div>
 
-  <span class="eyebrow">Case Study Â· Web App</span>
-  <h1 class="case-title">Arena XT</h1>
+                    <div class="case-section reveal">
+                        <h2 class="case-section-title">3. Objetivo</h2>
+                        <p class="case-text">
+                            Criar um fluxo simples de marcação online: ver horários disponíveis, escolher o slot e confirmar
+                            a reserva da quadra sem precisar de intermediários a cada solicitação.
+                        </p>
+                    </div>
 
-  <div class="case-meta">
-    <div class="meta-item">
-      <h4>FunÃ§Ã£o</h4>
-      <p>UX/UI Â· Produto com IA</p>
-    </div>
-    <div class="meta-item">
-      <h4>Tipo</h4>
-      <p>Agendamento de quadra</p>
-    </div>
-    <div class="meta-item">
-      <h4>Ferramentas</h4>
-      <p>IA, Figma, Vercel</p>
-    </div>
-    <div class="meta-item">
-      <h4>Link do Projeto</h4>
-      <p><a href="https://futev-lei.vercel.app/" target="_blank" rel="noopener noreferrer">Visitar site â†’</a></p>
-    </div>
-  </div>
+                    <div class="case-section reveal">
+                        <h2 class="case-section-title">4. Solução</h2>
+                        <p class="case-text">
+                            Interface web publicada na Vercel, construída com apoio de IA, com identidade visual própria
+                            (logo Arena XT) e foco em uma jornada curta de agendamento para a quadra.
+                        </p>
+                    </div>
 
-  <div class="case-content">
-    <div class="case-section">
-      <h2 class="case-section-title">1. VisÃ£o Geral</h2>
-      <p class="case-text">
-        O <strong>Arena XT</strong> Ã© um site feito com apoio de IA focado na marcaÃ§Ã£o de horÃ¡rios de uma quadra existente.
-        A proposta Ã© digitalizar o agendamento â€” normalmente feito por WhatsApp ou de forma informal â€”
-        em uma interface clara para o jogador consultar disponibilidade e reservar o horÃ¡rio desejado.
-      </p>
-      <div class="logo-panel">
-        <img src="../assets/arena-xt-logo.png" alt="Logo Arena XT">
-      </div>
-    </div>
+                    <div class="case-section reveal">
+                        <h2 class="case-section-title">5. Resultado</h2>
+                        <p class="case-text">
+                            O site está no ar e acessível em
+                            <a href="https://futev-lei.vercel.app/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-color); text-decoration: underline;">futev-lei.vercel.app</a>,
+                            permitindo marcar horários de forma digital.
+                        </p>
+                        <div style="margin-top: 2rem;">
+                            <a href="https://futev-lei.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Abrir Arena XT &rarr;</a>
+                        </div>
+                    </div>
 
-    <div class="case-section">
-      <h2 class="case-section-title">2. Problema</h2>
-      <p class="case-text">
-        Quem administra a quadra e quem joga costuma depender de mensagens e confirmaÃ§Ãµes manuais.
-        Isso gera conflito de horÃ¡rios, demora na resposta e falta de visÃ£o clara sobre o que jÃ¡ estÃ¡ reservado.
-      </p>
-    </div>
+                </div>
+            </div>
+        </section>
 
-    <div class="case-section">
-      <h2 class="case-section-title">3. Objetivo</h2>
-      <p class="case-text">
-        Criar um fluxo simples de marcaÃ§Ã£o online: ver horÃ¡rios disponÃ­veis, escolher o slot e confirmar
-        a reserva da quadra sem precisar de intermediÃ¡rios a cada solicitaÃ§Ã£o.
-      </p>
-    </div>
+    </main>
 
-    <div class="case-section">
-      <h2 class="case-section-title">4. SoluÃ§Ã£o</h2>
-      <p class="case-text">
-        Interface web publicada na Vercel, construÃ­da com apoio de IA, com identidade visual prÃ³pria
-        (logo Arena XT) e foco em uma jornada curta de agendamento para a quadra.
-      </p>
-    </div>
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-text">
+                Paulo André Xavier &copy; 2026
+            </div>
+            <div class="footer-designer">
+                UX/UI Designer
+            </div>
+        </div>
+    </footer>
 
-    <div class="case-section">
-      <h2 class="case-section-title">5. Resultado</h2>
-      <p class="case-text">
-        O site estÃ¡ no ar e acessÃ­vel em
-        <a href="https://futev-lei.vercel.app/" target="_blank" rel="noopener noreferrer">futev-lei.vercel.app</a>,
-        permitindo marcar horÃ¡rios de forma digital.
-      </p>
-      <div class="case-cta">
-        <a href="https://futev-lei.vercel.app/" target="_blank" rel="noopener noreferrer" class="cta-btn">Abrir Arena XT â†’</a>
-      </div>
-    </div>
-  </div>
-</main>
-
-<footer class="site-footer">
-  <div class="footer-inner">
-    <p class="footer-text">Â© 2026 Paulo AndrÃ© Xavier</p>
-    <p class="footer-role">UX/UI Designer</p>
-  </div>
-</footer>
-
-<script>
-  const header = document.getElementById('siteHeader');
-  const toggle = document.getElementById('menuToggle');
-  const mobileNav = document.getElementById('mobileNav');
-
-  window.addEventListener('scroll', () => {
-    header.classList.toggle('scrolled', window.scrollY > 8);
-  });
-
-  toggle.addEventListener('click', () => {
-    const isOpen = toggle.classList.toggle('open');
-    mobileNav.classList.toggle('open', isOpen);
-    toggle.setAttribute('aria-expanded', isOpen);
-    document.body.style.overflow = isOpen ? 'hidden' : '';
-  });
-
-  mobileNav.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      toggle.classList.remove('open');
-      mobileNav.classList.remove('open');
-      document.body.style.overflow = '';
-    });
-  });
-</script>
+    <script src="../main.js"></script>
 </body>
 </html>
