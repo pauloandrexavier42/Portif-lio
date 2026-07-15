@@ -671,6 +671,16 @@
     font-size: 14px;
     padding: 10px 18px;
   }
+  .cta-btn--disabled{
+    opacity: 0.45;
+    cursor: not-allowed;
+    pointer-events: none;
+    background: var(--muted);
+  }
+  .cta-btn--disabled:hover{
+    background: var(--muted);
+    transform: none;
+  }
   .project-link-secondary{
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 600;
@@ -779,7 +789,7 @@
 <section class="projects" id="projetos">
   <div class="section-head">
     <h2>Projetos</h2>
-    <p>Produtos digitais em que atuei do conceito à interface publicada — começando pelo Arena XT.</p>
+    <p>Produtos digitais em que atuei do conceito &agrave; interface &mdash; do agendamento esportivo ao banking.</p>
   </div>
 
   <div class="projects-list">
@@ -792,11 +802,11 @@
         <img src="assets/arena-xt-logo.png" alt="Logo Arena XT" class="project-logo">
       </div>
       <div class="project-body">
-        <span class="project-tag">Web App · Marcação de Quadra</span>
+        <span class="project-tag">Web App &middot; Marca&ccedil;&atilde;o de Quadra</span>
         <h3>Arena XT</h3>
         <p class="project-desc">
-          Site feito com apoio de IA para agendamento de horários de uma quadra existente.
-          Fluxo simples para o usuário ver disponibilidade e marcar o horário desejado.
+          Site feito com apoio de IA para agendamento de hor&aacute;rios de uma quadra existente.
+          Fluxo simples para o usu&aacute;rio ver disponibilidade e marcar o hor&aacute;rio desejado.
         </p>
         <div class="project-techs">
           <span class="project-tech">UX/UI</span>
@@ -806,6 +816,33 @@
         <div class="project-actions">
           <a href="https://futev-lei.vercel.app/" target="_blank" rel="noopener noreferrer" class="cta-btn">Ver projeto</a>
           <a href="projects/arena-xt.html" class="project-link-secondary">Ver case study</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="project-card">
+      <div class="project-visual">
+        <span class="frame-corner tl"></span>
+        <span class="frame-corner tr"></span>
+        <span class="frame-corner bl"></span>
+        <span class="frame-corner br"></span>
+        <img src="assets/venobank-logo.png" alt="Logo VenoBank" class="project-logo">
+      </div>
+      <div class="project-body">
+        <span class="project-tag">Mobile App &middot; Banking</span>
+        <h3>VenoBank</h3>
+        <p class="project-desc">
+          App banc&aacute;rio completo projetado para ser f&aacute;cil de usar, com foco em melhorar a interface
+          para todos os p&uacute;blicos &mdash; da conta ao dia a dia financeiro.
+        </p>
+        <div class="project-techs">
+          <span class="project-tech">UX/UI</span>
+          <span class="project-tech">Figma</span>
+          <span class="project-tech">Mobile</span>
+        </div>
+        <div class="project-actions">
+          <span class="cta-btn cta-btn--disabled" aria-disabled="true" title="Em breve">Ver projeto</span>
+          <a href="projects/venobank.html" class="project-link-secondary">Ver case study</a>
         </div>
       </div>
     </article>
