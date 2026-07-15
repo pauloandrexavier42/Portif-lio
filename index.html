@@ -61,14 +61,28 @@
     gap: 24px;
   }
 
-  /* ---- Signature logo: "selected artboard" frame ---- */
-  .logo-frame{
-    position: relative;
-    display:flex;
-    flex-direction:column;
-    gap: 2px;
-    padding: 10px 18px;
+  /* ---- Logo (case-study style: avatar + name) ---- */
+  .logo-link{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
   }
+  .logo-img{
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+  }
+  .logo-name{
+    font-family:'Space Grotesk', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  /* corners still used in hero / cards */
   .frame-corner{
     position:absolute;
     width: 9px;
@@ -82,23 +96,13 @@
   .frame-corner.tr{ top:-1px; right:-1px; border-left:none; border-bottom:none; }
   .frame-corner.bl{ bottom:-1px; left:-1px; border-right:none; border-top:none; }
   .frame-corner.br{ bottom:-1px; right:-1px; border-left:none; border-top:none; }
-  .logo-frame:hover .frame-corner{ opacity:1; transform:scale(1); }
 
-  .logo-eyebrow{
-    font-family:'JetBrains Mono', monospace;
-    font-size: 10.5px;
-    letter-spacing: 0.14em;
-    color: var(--indigo);
-    text-transform: uppercase;
+  /* ---- Nav (right side, with CTA) ---- */
+  .header-right{
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
-  .logo-name{
-    font-family:'Space Grotesk', sans-serif;
-    font-size: 21px;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-  }
-
-  /* ---- Nav ---- */
   .main-nav{
     display:flex;
     align-items:center;
@@ -113,7 +117,7 @@
     border-radius: 8px;
     transition: color .2s ease, background .2s ease;
   }
-  .main-nav a::after{
+  .main-nav a:not(.cta-btn)::after{
     content:"";
     position:absolute;
     left: 16px;
@@ -125,15 +129,8 @@
     transform-origin: left;
     transition: transform .25s ease;
   }
-  .main-nav a:hover{ color: var(--indigo); }
-  .main-nav a:hover::after{ transform: scaleX(1); }
-
-  /* ---- Actions ---- */
-  .header-actions{
-    display:flex;
-    align-items:center;
-    gap: 18px;
-  }
+  .main-nav a:not(.cta-btn):hover{ color: var(--indigo); }
+  .main-nav a:not(.cta-btn):hover::after{ transform: scaleX(1); }
 
   .status-pill{
     display:flex;
@@ -175,6 +172,13 @@
   .cta-btn:hover{
     background: var(--indigo);
     transform: translateY(-1px);
+    color: var(--white);
+  }
+  .main-nav .cta-btn{
+    margin-left: 8px;
+  }
+  .main-nav .cta-btn:hover{
+    color: var(--white);
   }
 
   .menu-toggle{
@@ -218,24 +222,12 @@
     transform: translateY(0);
     pointer-events: auto;
   }
-  .mobile-nav a{
+  .mobile-nav a:not(.cta-btn){
     font-family:'Space Grotesk', sans-serif;
     font-size: 28px;
     font-weight: 600;
     padding: 16px 0;
     border-bottom: 1px solid var(--line);
-  }
-  .mobile-nav .mobile-status{
-    margin-top: 24px;
-    font-family:'JetBrains Mono', monospace;
-    font-size: 12px;
-    color: var(--muted);
-    display:flex;
-    align-items:center;
-    gap:8px;
-  }
-  .mobile-nav .mobile-status .dot{
-    width:7px; height:7px; border-radius:50%; background:#2FBF71;
   }
   .mobile-nav .cta-btn{
     margin-top: 24px;
@@ -243,14 +235,12 @@
   }
 
   @media (max-width: 900px){
-    .main-nav, .status-pill{ display:none; }
-    .header-actions{ gap: 10px; }
+    .main-nav{ display:none; }
+    .menu-toggle{ display:flex; }
   }
   @media (max-width: 640px){
     .header-inner{ padding: 0 20px; }
-    .cta-btn{ display:none; }
-    .menu-toggle{ display:flex; }
-    .logo-name{ font-size: 18px; }
+    .logo-name{ font-size: 16px; }
   }
 
   /* ---------- HERO ---------- */
@@ -717,25 +707,18 @@
 
 <header class="site-header" id="siteHeader">
   <div class="header-inner">
-    <a href="#" class="logo-frame">
-      <span class="frame-corner tl"></span>
-      <span class="frame-corner tr"></span>
-      <span class="frame-corner bl"></span>
-      <span class="frame-corner br"></span>
-      <span class="logo-eyebrow">UX/UI Designer</span>
+    <a href="#sobre" class="logo-link">
+      <img src="assets/paulo-andre.png" alt="Paulo André" class="logo-img">
       <span class="logo-name">Paulo André</span>
     </a>
 
-    <nav class="main-nav">
-      <a href="#sobre">Sobre</a>
-      <a href="#projetos">Projetos</a>
-      <a href="#certificados">Certificados</a>
-      <a href="#contato">Contato</a>
-    </nav>
-
-    <div class="header-actions">
-      <span class="status-pill"><span class="dot"></span>Disponível para projetos</span>
-      <a href="#contato" class="cta-btn">Vamos conversar</a>
+    <div class="header-right">
+      <nav class="main-nav">
+        <a href="#sobre">Sobre</a>
+        <a href="#projetos">Projetos</a>
+        <a href="#certificados">Certificados</a>
+        <a href="#contato" class="cta-btn">Vamos conversar</a>
+      </nav>
       <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -747,8 +730,6 @@
   <a href="#sobre">Sobre</a>
   <a href="#projetos">Projetos</a>
   <a href="#certificados">Certificados</a>
-  <a href="#contato">Contato</a>
-  <span class="mobile-status"><span class="dot"></span>Disponível para projetos</span>
   <a href="#contato" class="cta-btn">Vamos conversar</a>
 </nav>
 
