@@ -569,6 +569,148 @@
   @media (max-width: 640px){
     .certs{ padding: 0 20px 80px; }
   }
+
+  /* ---------- PROJETOS ---------- */
+  .projects{
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 40px 120px;
+  }
+
+  .projects-list{
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .project-card{
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+  }
+  .project-card:hover{
+    border-color: var(--indigo);
+    transform: translateY(-3px);
+    box-shadow: 0 14px 34px rgba(20,20,26,0.07);
+  }
+
+  .project-visual{
+    position: relative;
+    background: #0A0A0A;
+    min-height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 36px;
+  }
+  .project-visual .frame-corner{
+    opacity: 1;
+    transform: scale(1);
+    width: 12px;
+    height: 12px;
+    border-color: rgba(255,255,255,0.55);
+    z-index: 2;
+  }
+  .project-visual .frame-corner.tl{ top: 12px; left: 12px; }
+  .project-visual .frame-corner.tr{ top: 12px; right: 12px; }
+  .project-visual .frame-corner.bl{ bottom: 12px; left: 12px; }
+  .project-visual .frame-corner.br{ bottom: 12px; right: 12px; }
+
+  .project-logo{
+    width: 100%;
+    max-width: 220px;
+    height: auto;
+    display: block;
+  }
+
+  .project-body{
+    padding: 36px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 14px;
+  }
+  .project-tag{
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--indigo);
+  }
+  .project-body h3{
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: clamp(22px, 2.5vw, 28px);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+  .project-desc{
+    font-size: 15px;
+    line-height: 1.65;
+    color: #45454F;
+    max-width: 48ch;
+  }
+  .project-techs{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+  }
+  .project-tech{
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--ink);
+    background: var(--bg);
+    border: 1px solid var(--line);
+    padding: 6px 12px;
+    border-radius: 8px;
+  }
+  .project-actions{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 10px;
+  }
+  .project-actions .cta-btn{
+    font-size: 14px;
+    padding: 10px 18px;
+  }
+  .project-link-secondary{
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--ink);
+    padding: 10px 18px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--white);
+    transition: border-color .2s ease, color .2s ease, transform .2s ease;
+  }
+  .project-link-secondary:hover{
+    border-color: var(--indigo);
+    color: var(--indigo);
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 900px){
+    .project-card{
+      grid-template-columns: 1fr;
+    }
+    .project-visual{
+      min-height: 240px;
+    }
+    .project-body{
+      padding: 28px 24px 32px;
+    }
+  }
+  @media (max-width: 640px){
+    .projects{ padding: 0 20px 80px; }
+  }
 </style>
 </head>
 <body>
@@ -654,6 +796,42 @@
 
       </div>
     </div>
+  </div>
+</section>
+
+<section class="projects" id="projetos">
+  <div class="section-head">
+    <h2>Projetos</h2>
+    <p>Produtos digitais em que atuei do conceito à interface publicada — começando pelo Arena XT.</p>
+  </div>
+
+  <div class="projects-list">
+    <article class="project-card">
+      <div class="project-visual">
+        <span class="frame-corner tl"></span>
+        <span class="frame-corner tr"></span>
+        <span class="frame-corner bl"></span>
+        <span class="frame-corner br"></span>
+        <img src="assets/arena-xt-logo.png" alt="Logo Arena XT" class="project-logo">
+      </div>
+      <div class="project-body">
+        <span class="project-tag">Web App · Marcação de Quadra</span>
+        <h3>Arena XT</h3>
+        <p class="project-desc">
+          Site feito com apoio de IA para agendamento de horários de uma quadra existente.
+          Fluxo simples para o usuário ver disponibilidade e marcar o horário desejado.
+        </p>
+        <div class="project-techs">
+          <span class="project-tech">UX/UI</span>
+          <span class="project-tech">IA</span>
+          <span class="project-tech">Vercel</span>
+        </div>
+        <div class="project-actions">
+          <a href="https://futev-lei.vercel.app/" target="_blank" rel="noopener noreferrer" class="cta-btn">Ver projeto</a>
+          <a href="projects/arena-xt.html" class="project-link-secondary">Ver case study</a>
+        </div>
+      </div>
+    </article>
   </div>
 </section>
 

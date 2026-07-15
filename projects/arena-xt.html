@@ -3,28 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Case Study: Arena XT - Plataforma Web Esportiva por Paulo Xavier.">
-    <title>Arena XT | UX/UI Case Study | Paulo Xavier</title>
+    <meta name="description" content="Case Study: Arena XT - Site de marcação de horários de quadra por Paulo André Xavier.">
+    <title>Arena XT | Case Study | Paulo André</title>
     
-    <!-- Link to global style sheet -->
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 
-    <!-- STICKY HEADER / NAV -->
     <header class="header scrolled" id="header">
         <div class="container header-container">
             <a href="../index.html" class="logo-link">
-                <img src="../logo-avatar.jpg" alt="Paulo Xavier Logo" class="logo-img">
-                <span>Paulo Xavier</span>
+                <img src="../assets/paulo-andre.png" alt="Paulo André" class="logo-img">
+                <span>Paulo André</span>
             </a>
             <nav class="nav">
                 <ul class="nav-list">
-                    <li><a href="../index.html#home" class="nav-link">Início</a></li>
                     <li><a href="../index.html#sobre" class="nav-link">Sobre</a></li>
-                    <li><a href="../index.html#habilidades" class="nav-link">Habilidades</a></li>
-                    <li><a href="../index.html#certificacoes" class="nav-link">Certificações</a></li>
                     <li><a href="../index.html#projetos" class="nav-link">Projetos</a></li>
+                    <li><a href="../index.html#certificados" class="nav-link">Certificados</a></li>
                     <li><a href="../index.html#contato" class="nav-link">Contato</a></li>
                 </ul>
             </nav>
@@ -33,7 +29,6 @@
 
     <main>
         
-        <!-- CASE HERO -->
         <section class="case-hero">
             <div class="container">
                 <a href="../index.html#projetos" class="back-link">
@@ -41,21 +36,21 @@
                     Voltar para Projetos
                 </a>
                 
-                <span class="case-category">Plataforma Web Esportiva</span>
+                <span class="case-category">Web App · Marcação de Quadra</span>
                 <h1 class="case-title">Arena XT</h1>
                 
                 <div class="case-meta">
                     <div class="meta-item">
                         <h4>Função</h4>
-                        <p>Product Designer</p>
+                        <p>UX/UI · Produto com IA</p>
                     </div>
                     <div class="meta-item">
-                        <h4>Duração</h4>
-                        <p>5 semanas (2026)</p>
+                        <h4>Tipo</h4>
+                        <p>Agendamento de quadra</p>
                     </div>
                     <div class="meta-item">
                         <h4>Ferramentas</h4>
-                        <p>Figma, Vercel, VS Code</p>
+                        <p>IA, Figma, Vercel</p>
                     </div>
                     <div class="meta-item">
                         <h4>Link do Projeto</h4>
@@ -65,115 +60,56 @@
             </div>
         </section>
 
-        <!-- CASE CONTENT -->
         <section class="case-body" style="padding-top: 0;">
             <div class="container">
                 <div class="case-content-wrapper">
                     
-                    <!-- 1. Visão Geral -->
                     <div class="case-section reveal">
                         <h2 class="case-section-title">1. Visão Geral</h2>
                         <p class="case-text">
-                            O <strong>Arena XT</strong> é um sistema web desenvolvido sob medida para gerenciar campeonatos, cadastrar equipes, gerir atletas, criar calendários de jogos e registrar pontuações esportivas em tempo real. A plataforma funciona tanto para administradores de ligas esportivas quanto para torcedores e competidores acompanharem os resultados.
+                            O <strong>Arena XT</strong> é um site feito com apoio de IA focado na marcação de horários de uma quadra existente.
+                            A proposta é digitalizar o agendamento — normalmente feito por WhatsApp ou de forma informal —
+                            em uma interface clara para o jogador consultar disponibilidade e reservar o horário desejado.
                         </p>
+                        <div style="margin-top: 2.5rem; background: #0A0A0A; border: 1px solid var(--border-color); border-radius: 16px; padding: 3rem; display: flex; justify-content: center; align-items: center;">
+                            <img src="../assets/arena-xt-logo.png" alt="Logo Arena XT" style="max-width: 260px; width: 100%; height: auto;">
+                        </div>
                     </div>
 
-                    <!-- 2. Problema -->
                     <div class="case-section reveal">
                         <h2 class="case-section-title">2. Problema</h2>
                         <p class="case-text">
-                            Organizadores de torneios locais usam planilhas e grupos de mensagens de forma fragmentada para coordenar competições. Essa descentralização causa erros na tabela de classificação, atrasos de cronograma e má experiência para os atletas.
+                            Quem administra a quadra e quem joga costuma depender de mensagens e confirmações manuais.
+                            Isso gera conflito de horários, demora na resposta e falta de visão clara sobre o que já está reservado.
                         </p>
                     </div>
 
-                    <!-- 3. Objetivo -->
                     <div class="case-section reveal">
                         <h2 class="case-section-title">3. Objetivo</h2>
                         <p class="case-text">
-                            Centralizar todas as operações de um campeonato em um único painel e diminuir o tempo que os organizadores levam para atualizar e divulgar as pontuações e jogos dos torneios.
+                            Criar um fluxo simples de marcação online: ver horários disponíveis, escolher o slot e confirmar
+                            a reserva da quadra sem precisar de intermediários a cada solicitação.
                         </p>
                     </div>
 
-                    <!-- 4. Pesquisa -->
                     <div class="case-section reveal">
-                        <h2 class="case-section-title">4. Pesquisa</h2>
+                        <h2 class="case-section-title">4. Solução</h2>
                         <p class="case-text">
-                            Conduzimos testes de observação com 3 coordenadores de torneios amadores de vôlei e futebol. Notamos que:
-                        </p>
-                        <ul class="case-list">
-                            <li>Atualizar uma tabela de torneio com 16 times levava em média 2 horas após a rodada de jogos.</li>
-                            <li>Os atletas perdiam informações cruciais sobre horários e locais devido a longas threads de mensagens no WhatsApp.</li>
-                            <li>Responsividade em dispositivos móveis era a prioridade absoluta para 85% dos usuários finais (atletas e torcedores na beira da quadra).</li>
-                        </ul>
-                    </div>
-
-                    <!-- 5. Benchmark -->
-                    <div class="case-section reveal">
-                        <h2 class="case-section-title">5. Benchmark</h2>
-                        <p class="case-text">
-                            Analisamos ferramentas globais de gestão de ligas. Muitas delas possuem interfaces complexas e sobrecarregadas com dezenas de tabelas estáticas. Nosso foco com o Arena XT foi criar uma experiência moderna com foco no "mobile-first" e interfaces dashboard limpas que atualizam dinamicamente via WebSockets.
+                            Interface web publicada na Vercel, construída com apoio de IA, com identidade visual própria
+                            (logo Arena XT) e foco em uma jornada curta de agendamento para a quadra.
                         </p>
                     </div>
 
-                    <!-- 6. Processo de Design -->
                     <div class="case-section reveal">
-                        <h2 class="case-section-title">6. Processo de Design</h2>
+                        <h2 class="case-section-title">5. Resultado</h2>
                         <p class="case-text">
-                            Seguimos a metodologia ágil de design, integrando wireframing rápido e validação direta com o desenvolvedor front-end. Criamos um guia de estilo consistente (Design System) com componentes reutilizáveis, garantindo que o painel administrativo mantivesse a mesma consistência visual do painel público do torcedor.
+                            O site está no ar e acessível em
+                            <a href="https://futev-lei.vercel.app/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-color); text-decoration: underline;">futev-lei.vercel.app</a>,
+                            permitindo marcar horários de forma digital.
                         </p>
-                    </div>
-
-                    <!-- 7. Wireframes -->
-                    <div class="case-section reveal">
-                        <h2 class="case-section-title">7. Wireframes</h2>
-                        <p class="case-text">
-                            Mapeamos a estrutura do dashboard e tabelas responsivas. Garantimos que informações de horários de jogos, status e times fossem apresentadas com forte contraste e leitura rápida para celulares:
-                        </p>
-                        
-                        <!-- Figma/Image Embed Placeholder -->
-                        <div class="case-embed-placeholder">
-                            <span class="embed-icon">📁</span>
-                            <span class="embed-label">Layouts de Baixa Fidelidade do Dashboard</span>
-                            <span class="embed-sub">Insira aqui um link de imagem ou iframe do Figma</span>
+                        <div style="margin-top: 2rem;">
+                            <a href="https://futev-lei.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Abrir Arena XT &rarr;</a>
                         </div>
-                    </div>
-
-                    <!-- 8. Solução Final -->
-                    <div class="case-section reveal">
-                        <h2 class="case-section-title">8. Solução Final</h2>
-                        <p class="case-text">
-                            A interface final tem uma paleta escura futurista e moderna. O sistema de grid permite visualizar as chaves e os jogos sequenciais de forma gráfica. O painel do organizador traz atalhos simples de preenchimento de placares de jogos.
-                        </p>
-                        
-                        <!-- Figma/Image Embed Placeholder -->
-                        <div class="case-embed-placeholder">
-                            <span class="embed-icon">🎨</span>
-                            <span class="embed-label">Telas do Arena XT (Dashboard Web & Mobile)</span>
-                            <span class="embed-sub">Insira aqui um link de imagem ou iframe do Figma</span>
-                        </div>
-                    </div>
-
-                    <!-- 9. Protótipos -->
-                    <div class="case-section reveal">
-                        <h2 class="case-section-title">9. Protótipos</h2>
-                        <p class="case-text">
-                            Você pode testar a plataforma em produção que está hospedada e rodando no Vercel pelo link do projeto no topo, ou visualizar o fluxo de design no Figma:
-                        </p>
-                        
-                        <!-- Figma Live Iframe placeholder -->
-                        <div class="case-embed-placeholder" style="border-style: solid; border-color: rgba(168, 85, 247, 0.2);">
-                            <span class="embed-icon">⚡</span>
-                            <span class="embed-label">Protótipo de Fluxo de Administração</span>
-                            <span class="embed-sub">Pronto para incorporar o iframe do protótipo no Figma</span>
-                        </div>
-                    </div>
-
-                    <!-- 10. Aprendizados -->
-                    <div class="case-section reveal">
-                        <h2 class="case-section-title">10. Aprendizados</h2>
-                        <p class="case-text">
-                            Criar um Design System robusto no início do projeto economizou muito tempo de desenvolvimento e design durante a fase final. Entender a urgência de leitura de dados dinâmicos na quadra ajudou a definir a hierarquia de fontes de tamanho maior no layout mobile do atleta.
-                        </p>
                     </div>
 
                 </div>
@@ -182,11 +118,10 @@
 
     </main>
 
-    <!-- FOOTER -->
     <footer class="footer">
         <div class="container footer-container">
             <div class="footer-text">
-                Paulo Xavier &copy; 2026
+                Paulo André Xavier &copy; 2026
             </div>
             <div class="footer-designer">
                 UX/UI Designer
@@ -194,7 +129,6 @@
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script src="../main.js"></script>
 </body>
 </html>
