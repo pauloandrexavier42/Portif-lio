@@ -1,361 +1,779 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfólio profissional de Paulo Xavier, UX/UI Designer. Criação de interfaces elegantes, funcionais e centradas no usuário.">
-    <title>Paulo Xavier | UX/UI Designer Portfolio</title>
-    
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paulo André — UX/UI Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #F7F7FB;
+    --ink: #14141A;
+    --indigo: #5457E5;
+    --indigo-dim: #EDEDFC;
+    --coral: #FF6B4A;
+    --muted: #85859A;
+    --line: #E3E3EC;
+    --white: #FFFFFF;
+    --header-h: 84px;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+  }
+
+  a{ text-decoration:none; color:inherit; }
+
+  /* ---------- HEADER ---------- */
+  .site-header{
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    height: var(--header-h);
+    display:flex;
+    align-items:center;
+    background: rgba(247,247,251,0.7);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+    transition: box-shadow .3s ease, border-color .3s ease;
+  }
+  .site-header.scrolled{
+    box-shadow: 0 8px 30px rgba(20,20,26,0.06);
+  }
+
+  .header-inner{
+    width:100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap: 24px;
+  }
+
+  /* ---- Signature logo: "selected artboard" frame ---- */
+  .logo-frame{
+    position: relative;
+    display:flex;
+    flex-direction:column;
+    gap: 2px;
+    padding: 10px 18px;
+  }
+  .frame-corner{
+    position:absolute;
+    width: 9px;
+    height: 9px;
+    border: 2px solid var(--indigo);
+    opacity: 0;
+    transform: scale(0.6);
+    transition: opacity .25s ease, transform .25s ease;
+  }
+  .frame-corner.tl{ top:-1px; left:-1px; border-right:none; border-bottom:none; }
+  .frame-corner.tr{ top:-1px; right:-1px; border-left:none; border-bottom:none; }
+  .frame-corner.bl{ bottom:-1px; left:-1px; border-right:none; border-top:none; }
+  .frame-corner.br{ bottom:-1px; right:-1px; border-left:none; border-top:none; }
+  .logo-frame:hover .frame-corner{ opacity:1; transform:scale(1); }
+
+  .logo-eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    color: var(--indigo);
+    text-transform: uppercase;
+  }
+  .logo-name{
+    font-family:'Space Grotesk', sans-serif;
+    font-size: 21px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  /* ---- Nav ---- */
+  .main-nav{
+    display:flex;
+    align-items:center;
+    gap: 4px;
+  }
+  .main-nav a{
+    position:relative;
+    font-size: 14.5px;
+    font-weight: 500;
+    color: var(--ink);
+    padding: 10px 16px;
+    border-radius: 8px;
+    transition: color .2s ease, background .2s ease;
+  }
+  .main-nav a::after{
+    content:"";
+    position:absolute;
+    left: 16px;
+    right: 16px;
+    bottom: 6px;
+    height: 2px;
+    background: var(--indigo);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .25s ease;
+  }
+  .main-nav a:hover{ color: var(--indigo); }
+  .main-nav a:hover::after{ transform: scaleX(1); }
+
+  /* ---- Actions ---- */
+  .header-actions{
+    display:flex;
+    align-items:center;
+    gap: 18px;
+  }
+
+  .status-pill{
+    display:flex;
+    align-items:center;
+    gap: 8px;
+    font-family:'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    color: var(--muted);
+    padding: 7px 12px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .status-pill .dot{
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #2FBF71;
+    box-shadow: 0 0 0 0 rgba(47,191,113,0.5);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse{
+    0%{ box-shadow: 0 0 0 0 rgba(47,191,113,0.45); }
+    70%{ box-shadow: 0 0 0 6px rgba(47,191,113,0); }
+    100%{ box-shadow: 0 0 0 0 rgba(47,191,113,0); }
+  }
+
+  .cta-btn{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 14.5px;
+    color: var(--white);
+    background: var(--ink);
+    padding: 11px 20px;
+    border-radius: 10px;
+    white-space: nowrap;
+    transition: background .2s ease, transform .2s ease;
+  }
+  .cta-btn:hover{
+    background: var(--indigo);
+    transform: translateY(-1px);
+  }
+
+  .menu-toggle{
+    display:none;
+    flex-direction:column;
+    justify-content:center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    background:none;
+    border:none;
+    cursor:pointer;
+  }
+  .menu-toggle span{
+    width: 100%;
+    height: 2px;
+    background: var(--ink);
+    transition: transform .25s ease, opacity .25s ease;
+  }
+  .menu-toggle.open span:nth-child(1){ transform: translateY(7px) rotate(45deg); }
+  .menu-toggle.open span:nth-child(2){ opacity:0; }
+  .menu-toggle.open span:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
+
+  /* ---- Mobile nav overlay ---- */
+  .mobile-nav{
+    position: fixed;
+    inset: var(--header-h) 0 0 0;
+    background: var(--bg);
+    display:flex;
+    flex-direction:column;
+    padding: 32px 40px;
+    gap: 4px;
+    transform: translateY(-8px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .25s ease, transform .25s ease;
+    z-index: 90;
+  }
+  .mobile-nav.open{
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  .mobile-nav a{
+    font-family:'Space Grotesk', sans-serif;
+    font-size: 28px;
+    font-weight: 600;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .mobile-nav .mobile-status{
+    margin-top: 24px;
+    font-family:'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .mobile-nav .mobile-status .dot{
+    width:7px; height:7px; border-radius:50%; background:#2FBF71;
+  }
+  .mobile-nav .cta-btn{
+    margin-top: 24px;
+    text-align: center;
+  }
+
+  @media (max-width: 900px){
+    .main-nav, .status-pill{ display:none; }
+    .header-actions{ gap: 10px; }
+  }
+  @media (max-width: 640px){
+    .header-inner{ padding: 0 20px; }
+    .cta-btn{ display:none; }
+    .menu-toggle{ display:flex; }
+    .logo-name{ font-size: 18px; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 96px 40px 120px;
+  }
+  .hero-inner{
+    display:grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 64px;
+    align-items:center;
+  }
+
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap: 8px;
+    font-family:'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--indigo);
+    margin-bottom: 20px;
+  }
+  .eyebrow::before{
+    content:"";
+    width: 16px;
+    height: 1px;
+    background: var(--indigo);
+  }
+
+  .hero-content h1{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: clamp(34px, 4.4vw, 56px);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .hero-content h1 .age{
+    font-weight: 500;
+    color: var(--muted);
+  }
+  .hero-role{
+    font-family:'Space Grotesk', sans-serif;
+    font-size: clamp(16px, 1.6vw, 20px);
+    color: var(--indigo);
+    font-weight: 500;
+    margin-bottom: 24px;
+  }
+
+  .hero-text{
+    font-size: 16.5px;
+    line-height: 1.7;
+    color: #45454F;
+    max-width: 52ch;
+    margin-bottom: 32px;
+  }
+
+  .skills-block{
+    margin-bottom: 40px;
+  }
+  .skills-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display:block;
+    margin-bottom: 12px;
+  }
+  .skills-tags{
+    display:flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .skill-tag{
+    font-family:'Inter', sans-serif;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--ink);
+    background: var(--white);
+    border: 1px solid var(--line);
+    padding: 7px 14px;
+    border-radius: 8px;
+    transition: border-color .2s ease, color .2s ease, transform .2s ease;
+  }
+  .skill-tag:hover{
+    border-color: var(--indigo);
+    color: var(--indigo);
+    transform: translateY(-2px);
+  }
+  .skill-tag.accent{
+    background: var(--indigo);
+    color: var(--white);
+    border-color: var(--indigo);
+  }
+
+  .hero-actions{
+    display:flex;
+    align-items:center;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+
+  /* ---- Photo: framed like a selected image asset ---- */
+  .hero-photo{
+    position: relative;
+    display:flex;
+    justify-content:center;
+  }
+  .photo-frame{
+    position: relative;
+    width: 100%;
+    max-width: 380px;
+    aspect-ratio: 4 / 5;
+    border-radius: 18px;
+    overflow: hidden;
+    background: var(--indigo-dim);
+  }
+  .photo-frame img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display:block;
+    filter: saturate(1.03);
+  }
+  .photo-frame .frame-corner{
+    opacity: 1;
+    transform: scale(1);
+    width: 14px;
+    height: 14px;
+    z-index: 2;
+  }
+  .photo-frame .frame-corner.tl{ top: 10px; left: 10px; }
+  .photo-frame .frame-corner.tr{ top: 10px; right: 10px; }
+  .photo-frame .frame-corner.bl{ bottom: 10px; left: 10px; }
+  .photo-frame .frame-corner.br{ bottom: 10px; right: 10px; }
+  .photo-frame .frame-corner{ border-color: var(--white); }
+
+  .photo-tag{
+    position:absolute;
+    left: 10px;
+    bottom: 10px;
+    font-family:'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    color: var(--white);
+    background: rgba(20,20,26,0.55);
+    backdrop-filter: blur(6px);
+    padding: 5px 9px;
+    border-radius: 6px;
+    z-index: 3;
+    letter-spacing: 0.02em;
+  }
+  .photo-status{
+    position:absolute;
+    top: 10px;
+    right: 10px;
+    display:flex;
+    align-items:center;
+    gap: 6px;
+    font-family:'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--white);
+    background: rgba(20,20,26,0.55);
+    backdrop-filter: blur(6px);
+    padding: 5px 9px;
+    border-radius: 999px;
+    z-index: 3;
+  }
+  .photo-status .dot{
+    width: 6px; height:6px; border-radius:50%;
+    background:#2FBF71;
+  }
+
+  @media (max-width: 900px){
+    .hero-inner{
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+    .hero-photo{ order: -1; }
+    .photo-frame{ max-width: 280px; margin: 0 auto; }
+  }
+  @media (max-width: 640px){
+    .hero{ padding: 56px 20px 80px; }
+  }
+
+  /* ---------- CERTIFICADOS ---------- */
+  .certs{
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 40px 120px;
+  }
+  .section-head{
+    margin-bottom: 44px;
+    max-width: 60ch;
+  }
+  .section-head h2{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: clamp(26px, 3vw, 36px);
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+  }
+  .section-head p{
+    color: #45454F;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .certs-grid{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+  }
+
+  .cert-card{
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+  }
+  .cert-card:hover{
+    border-color: var(--indigo);
+    transform: translateY(-3px);
+    box-shadow: 0 14px 34px rgba(20,20,26,0.07);
+  }
+
+  .cert-thumb{
+    position: relative;
+    background: var(--indigo-dim);
+    aspect-ratio: 16 / 10.5;
+    overflow: hidden;
+  }
+  .cert-thumb img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    display:block;
+    transition: transform .4s ease;
+  }
+  .cert-card:hover .cert-thumb img{
+    transform: scale(1.035);
+  }
+  .cert-thumb .frame-corner{
+    opacity: 1;
+    transform: scale(1);
+    width: 12px;
+    height: 12px;
+    border-color: var(--white);
+    z-index: 2;
+  }
+  .cert-thumb .frame-corner.tl{ top: 9px; left: 9px; }
+  .cert-thumb .frame-corner.tr{ top: 9px; right: 9px; }
+  .cert-thumb .frame-corner.bl{ bottom: 9px; left: 9px; }
+  .cert-thumb .frame-corner.br{ bottom: 9px; right: 9px; }
+
+  .cert-filetag{
+    position:absolute;
+    left: 9px;
+    bottom: 9px;
+    font-family:'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--white);
+    background: rgba(20,20,26,0.6);
+    backdrop-filter: blur(6px);
+    padding: 4px 8px;
+    border-radius: 6px;
+    z-index: 3;
+  }
+
+  .cert-body{
+    padding: 20px 22px 22px;
+  }
+  .cert-tag{
+    display:inline-block;
+    font-family:'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--indigo);
+    margin-bottom: 10px;
+  }
+  .cert-body h3{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+  .cert-meta{
+    display:flex;
+    flex-wrap: wrap;
+    gap: 6px 10px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .cert-meta span::after{
+    content: "·";
+    margin-left: 10px;
+    color: var(--line);
+  }
+  .cert-meta span:last-child::after{
+    content: "";
+    margin: 0;
+  }
+
+  @media (max-width: 780px){
+    .certs-grid{ grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px){
+    .certs{ padding: 0 20px 80px; }
+  }
+</style>
 </head>
 <body>
 
-    <!-- STICKY HEADER / NAV -->
-    <header class="header" id="header">
-        <div class="container header-container">
-            <a href="#home" class="logo-link" id="logo-nav">
-                <img src="logo-avatar.jpg" alt="Paulo Xavier Logo" class="logo-img">
-                <span>Paulo Xavier</span>
-            </a>
-            
-            <button class="mobile-menu-toggle" id="mobile-toggle" aria-label="Abrir Menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            
-            <nav class="nav">
-                <ul class="nav-list" id="nav-menu">
-                    <li><a href="#home" class="nav-link">Início</a></li>
-                    <li><a href="#sobre" class="nav-link">Sobre</a></li>
-                    <li><a href="#habilidades" class="nav-link">Habilidades</a></li>
-                    <li><a href="#certificacoes" class="nav-link">Certificações</a></li>
-                    <li><a href="#projetos" class="nav-link">Projetos</a></li>
-                    <li><a href="#contato" class="nav-link">Contato</a></li>
-                </ul>
-            </nav>
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="#" class="logo-frame">
+      <span class="frame-corner tl"></span>
+      <span class="frame-corner tr"></span>
+      <span class="frame-corner bl"></span>
+      <span class="frame-corner br"></span>
+      <span class="logo-eyebrow">UX/UI Designer</span>
+      <span class="logo-name">Paulo André</span>
+    </a>
+
+    <nav class="main-nav">
+      <a href="#sobre">Sobre</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#certificados">Certificados</a>
+      <a href="#contato">Contato</a>
+    </nav>
+
+    <div class="header-actions">
+      <span class="status-pill"><span class="dot"></span>Disponível para projetos</span>
+      <a href="#contato" class="cta-btn">Vamos conversar</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<nav class="mobile-nav" id="mobileNav">
+  <a href="#sobre">Sobre</a>
+  <a href="#projetos">Projetos</a>
+  <a href="#certificados">Certificados</a>
+  <a href="#contato">Contato</a>
+  <span class="mobile-status"><span class="dot"></span>Disponível para projetos</span>
+  <a href="#contato" class="cta-btn">Vamos conversar</a>
+</nav>
+
+<section class="hero" id="sobre">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <span class="eyebrow">Portfólio / Sobre</span>
+      <h1>Paulo André Xavier <span class="age">— 21 anos</span></h1>
+      <p class="hero-role">UX/UI Designer</p>
+      <p class="hero-text">
+        Experiência na criação de interfaces e produtos digitais centrados no usuário.
+        Atualmente estudo UX Design na EBAC e possuo certificações na área de UX/UI.
+        Apaixonado por design, tecnologia e inovação, busco transformar ideias em
+        experiências intuitivas, acessíveis e funcionais.
+      </p>
+
+      <div class="skills-block">
+        <span class="skills-label">Habilidades</span>
+        <div class="skills-tags">
+          <span class="skill-tag accent">UX Design</span>
+          <span class="skill-tag accent">UI Design</span>
+          <span class="skill-tag">Figma</span>
+          <span class="skill-tag">Prototipação</span>
+          <span class="skill-tag">Wireframing</span>
+          <span class="skill-tag">Design Systems</span>
+          <span class="skill-tag">User Flows</span>
+          <span class="skill-tag">Benchmarking</span>
+          <span class="skill-tag">IA</span>
         </div>
-    </header>
+      </div>
 
-    <main>
-        
-        <!-- HERO SECTION -->
-        <section class="hero" id="home">
-            <div class="container hero-container">
-                <div class="hero-content reveal">
-                    <span class="hero-subtitle">UX/UI Designer</span>
-                    <h1 class="hero-title">Paulo Xavier</h1>
-                    <p class="hero-description">
-                        Transformando problemas complexos em experiências digitais intuitivas, acessíveis e funcionais.
-                    </p>
-                    <div class="hero-actions">
-                        <a href="#projetos" class="btn btn-primary" id="btn-hero-projects">Ver Projetos</a>
-                        <a href="#contato" class="btn btn-secondary" id="btn-hero-contact">Entrar em Contato</a>
-                    </div>
-                </div>
-                
-                <div class="hero-image-wrapper reveal delay-2">
-                    <div class="profile-glow"></div>
-                    <div class="profile-frame">
-                        <img src="profile.jpg" alt="Paulo Xavier Portrait" class="profile-image">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SOBRE MIM SECTION -->
-        <section class="about" id="sobre">
-            <div class="container">
-                <div class="about-grid reveal">
-                    <div class="section-label">Sobre Mim</div>
-                    <div class="about-text">
-                        UX/UI Designer com experiência na criação de interfaces e produtos digitais centrados no usuário. Atualmente estudo UX Design na EBAC e possuo certificações na área de UX/UI. Apaixonado por design, tecnologia e inovação, busco transformar ideias em experiências intuitivas, acessíveis e funcionais.
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- HABILIDADES SECTION -->
-        <section class="skills" id="habilidades">
-            <div class="container">
-                <div class="section-header reveal">
-                    <h2 class="section-title">Habilidades</h2>
-                </div>
-                
-                <div class="skills-grid">
-                    <!-- Skill 1 -->
-                    <div class="skill-card reveal">
-                        <h3 class="skill-title">UX Design</h3>
-                        <p class="skill-desc" style="color: var(--text-muted); font-size: 0.9rem;">Foco em pesquisa de usuários, personas e mapeamento de jornadas.</p>
-                    </div>
-                    <!-- Skill 2 -->
-                    <div class="skill-card reveal delay-1">
-                        <h3 class="skill-title">UI Design</h3>
-                        <p class="skill-desc" style="color: var(--text-muted); font-size: 0.9rem;">Criação de interfaces elegantes, visual hierarchy e tipografia.</p>
-                    </div>
-                    <!-- Skill 3 -->
-                    <div class="skill-card reveal delay-2">
-                        <h3 class="skill-title">Figma</h3>
-                        <p class="skill-desc" style="color: var(--text-muted); font-size: 0.9rem;">Domínio completo da ferramenta líder de design do mercado.</p>
-                    </div>
-                    <!-- Skill 4 -->
-                    <div class="skill-card reveal delay-3">
-                        <h3 class="skill-title">Prototipação</h3>
-                        <p class="skill-desc" style="color: var(--text-muted); font-size: 0.9rem;">Desenvolvimento de fluxos interativos de alta e baixa fidelidade.</p>
-                    </div>
-                    <!-- Skill 5 -->
-                    <div class="skill-card reveal">
-                        <h3 class="skill-title">Wireframing</h3>
-                        <p class="skill-desc" style="color: var(--text-muted); font-size: 0.9rem;">Esboços estruturais rápidos para validação de layouts e fluxos.</p>
-                    </div>
-                    <!-- Skill 6 -->
-                    <div class="skill-card reveal delay-1">
-                        <h3 class="skill-title">Design Systems</h3>
-                        <p class="skill-desc" style="color: var(--text-muted); font-size: 0.9rem;">Componentes reutilizáveis, consistência visual e escalabilidade.</p>
-                    </div>
-                    <!-- Skill 7 -->
-                    <div class="skill-card reveal delay-2">
-                        <h3 class="skill-title">User Flows</h3>
-                        <p class="skill-desc" style="color: var(--text-muted); font-size: 0.9rem;">Arquitetura de informação e mapeamento da navegação do usuário.</p>
-                    </div>
-                    <!-- Skill 8 -->
-                    <div class="skill-card reveal delay-3">
-                        <h3 class="skill-title">Benchmarking</h3>
-                        <p class="skill-desc" style="color: var(--text-muted); font-size: 0.9rem;">Análise competitiva de mercado e boas práticas de UX.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CERTIFICAÇÕES SECTION -->
-        <section class="certifications" id="certificacoes">
-            <div class="container">
-                <div class="section-header reveal">
-                    <h2 class="section-title">Certificações & Desenvolvimento Contínuo</h2>
-                </div>
-                
-                <div class="certifications-content reveal">
-                    <p class="certifications-description">
-                        Acredito que o aprendizado contínuo é essencial para criar produtos digitais mais eficientes, acessíveis e centrados no usuário. Ao longo da minha jornada em UX/UI Design, tenho investido constantemente em cursos, workshops e capacitações que fortalecem minha visão estratégica, meu processo de design e minha capacidade de resolver problemas reais por meio da experiência do usuário.
-                    </p>
-                    
-                    <div class="certifications-grid">
-                        
-                        <!-- Certificação 1 -->
-                        <div class="certification-card skill-card reveal" 
-                             data-title="Design Centrado no Usuário"
-                             data-institution="PUCRS – Escola Politécnica"
-                             data-year="2026 (Abril)"
-                             data-hours="10 horas"
-                             data-desc="Capacitação voltada para os fundamentos do Design Centrado no Usuário, abordando experiência do usuário (UX), acessibilidade, design de interação, prototipação, necessidades dos usuários, modelos conceituais, usabilidade e criação de soluções focadas em pessoas."
-                             data-competencies="UX Design e Human-Centered Design;Acessibilidade Digital;Design de Interação;Prototipação;Pesquisa e compreensão de usuários;Boas práticas de usabilidade;Interfaces intuitivas e funcionais"
-                             data-image="cert-pucrs.png">
-                            <div class="cert-card-image-wrapper">
-                                <img src="cert-pucrs.png" alt="Certificado Design Centrado no Usuário - PUCRS" class="cert-card-image">
-                            </div>
-                            <div class="cert-info">
-                                <h3 class="cert-title">Design Centrado no Usuário – PUCRS</h3>
-                                <p class="cert-desc">Curso focado nos fundamentos de UX Design, acessibilidade, usabilidade, design de interação e prototipação centrada no usuário.</p>
-                            </div>
-                        </div>
-
-                        <!-- Certificação 2 -->
-                        <div class="certification-card skill-card reveal delay-1" 
-                             data-title="UX/UI na Prática: Como Tomar Decisões Reais (Mesmo Sem Experiência)"
-                             data-institution="EBAC – Escola Britânica de Artes Criativas e Tecnologia"
-                             data-year="2026 (Junho)"
-                             data-hours="4 horas"
-                             data-instructor="Karol Oliveira"
-                             data-desc="Workshop prático focado no processo de tomada de decisões em projetos reais de UX/UI Design, apresentando metodologias utilizadas no mercado para transformar problemas em soluções centradas no usuário."
-                             data-competencies="Processo de Design aplicado ao mercado;Tomada de decisão baseada em contexto;Priorização de problemas;Pensamento crítico em UX/UI;Estratégia de produto;Desenvolvimento de soluções orientadas ao usuário"
-                             data-image="cert-ebac.png">
-                            <div class="cert-card-image-wrapper">
-                                <img src="cert-ebac.png" alt="Certificado UX/UI na Prática - EBAC" class="cert-card-image">
-                            </div>
-                            <div class="cert-info">
-                                <h3 class="cert-title">UX/UI na Prática: Como Tomar Decisões Reais (Mesmo Sem Experiência) – EBAC</h3>
-                                <p class="cert-desc">Workshop voltado à tomada de decisões em projetos reais de UX/UI Design, abordando processos, estratégia e resolução de problemas de produto.</p>
-                            </div>
-                        </div>
-                        
-                    </div>
-                    
-                    <p class="certifications-outro reveal">
-                        Em constante evolução profissional, buscando novas certificações e experiências que ampliem minha capacidade de criar produtos digitais inovadores, acessíveis e alinhados às necessidades dos usuários e dos negócios.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- PROJETOS SELECIONADOS SECTION -->
-        <section class="projects" id="projetos">
-            <div class="container">
-                <div class="section-header reveal">
-                    <h2 class="section-title">Projetos Selecionados</h2>
-                </div>
-                
-                <div class="projects-list">
-                    
-                    <!-- Projeto 01: VenoBank -->
-                    <article class="project-card reveal">
-                        <div class="project-info">
-                            <span class="project-category">Mobile Banking App</span>
-                            <h3 class="project-name">VenoBank</h3>
-                            <p class="project-desc">
-                                Aplicativo bancário desenvolvido com foco em usabilidade, acessibilidade e experiência financeira moderna.
-                            </p>
-                            <div class="project-techs">
-                                <span class="tech-tag">UX Design</span>
-                                <span class="tech-tag">UI Design</span>
-                                <span class="tech-tag">Figma</span>
-                                <span class="tech-tag">Prototipação</span>
-                            </div>
-                            <div style="display: flex; gap: 1rem; align-items: center;">
-                                <a href="projects/venobank.html" class="btn btn-primary" id="btn-project-venobank-case" style="padding: 0.75rem 1.5rem; font-size: 0.95rem;">Ver Case Study</a>
-                                <a href="https://www.figma.com/design/NMPLdZquaGnitiNQ1Ryiwm/VenoBank-app?node-id=243-1576&t=mMkqpJhNTzaxspoe-1" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" id="btn-project-venobank-figma" style="padding: 0.75rem 1.25rem; font-size: 0.95rem; display: flex; gap: 0.5rem; align-items: center;">
-                                    <span>Figma</span>
-                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="project-visual venobank-bg">
-                            <div class="mockup-container">
-                                <div class="mockup-inner">
-                                    <div class="mockup-logo">VenoBank</div>
-                                    <div class="mockup-text">Mobile Banking App</div>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Projeto 02: Arena XT -->
-                    <article class="project-card reveal">
-                        <div class="project-info">
-                            <span class="project-category">Plataforma Web Esportiva</span>
-                            <h3 class="project-name">Arena XT</h3>
-                            <p class="project-desc">
-                                Sistema web desenvolvido para gerenciamento de competições esportivas, atletas, equipes e eventos.
-                            </p>
-                            <div class="project-techs">
-                                <span class="tech-tag">UX Design</span>
-                                <span class="tech-tag">UI Design</span>
-                                <span class="tech-tag">Product Design</span>
-                                <span class="tech-tag">Design System</span>
-                            </div>
-                            <div style="display: flex; gap: 1rem; align-items: center;">
-                                <a href="projects/arena-xt.html" class="btn btn-primary" id="btn-project-arena-case" style="padding: 0.75rem 1.5rem; font-size: 0.95rem;">Ver Case Study</a>
-                                <a href="https://futev-lei.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" id="btn-project-arena-live" style="padding: 0.75rem 1.25rem; font-size: 0.95rem; display: flex; gap: 0.5rem; align-items: center;">
-                                    <span>Ver Projeto</span>
-                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="project-visual arena-bg">
-                            <div class="mockup-container">
-                                <div class="mockup-inner">
-                                    <div class="mockup-logo">Arena XT</div>
-                                    <div class="mockup-text">Web Platform</div>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Projeto 03: Nexus -->
-                    <article class="project-card reveal">
-                        <div class="project-info">
-                            <span class="project-category">Mobile App</span>
-                            <h3 class="project-name">Nexus</h3>
-                            <p class="project-desc">
-                                Aplicativo mobile focado em conectividade, organização e experiência digital moderna.
-                            </p>
-                            <div class="project-techs">
-                                <span class="tech-tag">UX Design</span>
-                                <span class="tech-tag">UI Design</span>
-                                <span class="tech-tag">Figma</span>
-                                <span class="tech-tag">User Flow</span>
-                            </div>
-                            <div style="display: flex; gap: 1rem; align-items: center;">
-                                <a href="projects/nexus.html" class="btn btn-primary" id="btn-project-nexus-case" style="padding: 0.75rem 1.5rem; font-size: 0.95rem;">Ver Case Study</a>
-                                <a href="https://www.figma.com/design/0WMPsf5uL7LBRR6WyjTvu3/NEXUS-APP?node-id=271-852&t=lJkagV2PQUhypZXS-1" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" id="btn-project-nexus-figma" style="padding: 0.75rem 1.25rem; font-size: 0.95rem; display: flex; gap: 0.5rem; align-items: center;">
-                                    <span>Figma</span>
-                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="project-visual nexus-bg">
-                            <div class="mockup-container">
-                                <div class="mockup-inner">
-                                    <div class="mockup-logo">Nexus</div>
-                                    <div class="mockup-text">Mobile App</div>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- CONTATO SECTION -->
-        <section class="contact" id="contato">
-            <div class="container">
-                <div class="contact-container reveal">
-                    <h2 class="contact-title">Vamos construir algo incrível juntos.</h2>
-                    <a href="mailto:pauloandrexavier42@gmail.com" class="contact-email" id="email-link">pauloandrexavier42@gmail.com</a>
-                    
-                    <div class="social-links">
-                        <!-- LinkedIn -->
-                        <a href="https://www.linkedin.com/in/paulo-andré-xavier-6ba867280/" target="_blank" rel="noopener noreferrer" class="social-btn" id="linkedin-link" aria-label="LinkedIn Profile">
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                            </svg>
-                        </a>
-                        
-                        <!-- Instagram -->
-                        <a href="https://www.instagram.com/decoxavierl/" target="_blank" rel="noopener noreferrer" class="social-btn" id="instagram-link" aria-label="Instagram Profile">
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                            </svg>
-                        </a>
-
-                        <!-- E-mail -->
-                        <a href="mailto:pauloandrexavier42@gmail.com" class="social-btn" id="email-social-link" aria-label="Enviar E-mail">
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="container footer-container">
-            <div class="footer-text">
-                Paulo Xavier &copy; 2026
-            </div>
-            <div class="footer-designer">
-                UX/UI Designer
-            </div>
-        </div>
-    </footer>
-
-    <!-- MODAL DE CERTIFICAÇÃO -->
-    <div class="modal" id="cert-modal" aria-hidden="true" role="dialog">
-        <div class="modal-overlay"></div>
-        <div class="modal-wrapper">
-            <button class="modal-close" id="modal-close-btn" aria-label="Fechar Modal">&times;</button>
-            <div class="modal-content" id="modal-content-area">
-                <!-- Conteúdo dinâmico carregado pelo Javascript -->
-            </div>
-        </div>
+      <div class="hero-actions">
+        <a href="#contato" class="cta-btn">Vamos conversar</a>
+        <span class="status-pill"><span class="dot"></span>Disponível para projetos</span>
+      </div>
     </div>
 
-    <!-- Scripts -->
-    <script src="main.js"></script>
+    <div class="hero-photo">
+      <div class="photo-frame">
+        <span class="frame-corner tl"></span>
+        <span class="frame-corner tr"></span>
+        <span class="frame-corner bl"></span>
+        <span class="frame-corner br"></span>
+        <img src="assets/paulo-andre.png" alt="Foto de Paulo André Xavier">
+        <span class="photo-tag">paulo-andre.png</span>
+        <span class="photo-status">100%</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="certs" id="certificados">
+  <div class="section-head">
+    <h2>Certificados</h2>
+    <p>Formações e workshops que venho acumulando na trilha de UX/UI — da teoria clássica de Norman à prática de criar interfaces com apoio de IA.</p>
+  </div>
+
+  <div class="certs-grid">
+    <article class="cert-card">
+      <div class="cert-thumb">
+        <span class="frame-corner tl"></span>
+        <span class="frame-corner tr"></span>
+        <span class="frame-corner bl"></span>
+        <span class="frame-corner br"></span>
+        <img src="assets/certs/cert-ia-ux.png" alt="Certificado do Workshop Portfólio de IA e UX na Prática">
+        <span class="cert-filetag">cert-ia-ux.png</span>
+      </div>
+      <div class="cert-body">
+        <span class="cert-tag">Certificado de Participação</span>
+        <h3>Portfólio de IA e UX na Prática</h3>
+        <div class="cert-meta">
+          <span>UX Unicórnio</span>
+          <span>Leandro Rezende</span>
+          <span>21–22 mar 2026</span>
+          <span>16h</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="cert-card">
+      <div class="cert-thumb">
+        <span class="frame-corner tl"></span>
+        <span class="frame-corner tr"></span>
+        <span class="frame-corner bl"></span>
+        <span class="frame-corner br"></span>
+        <img src="assets/certs/cert-design-centrado.png" alt="Certificado do curso Design Centrado no Usuário">
+        <span class="cert-filetag">cert-design-centrado.png</span>
+      </div>
+      <div class="cert-body">
+        <span class="cert-tag">Certificado de Extensão</span>
+        <h3>Design Centrado no Usuário</h3>
+        <div class="cert-meta">
+          <span>PUCRS · Escola Politécnica</span>
+          <span>Marcelo Pimenta &amp; Don Norman</span>
+          <span>10h</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="cert-card">
+      <div class="cert-thumb">
+        <span class="frame-corner tl"></span>
+        <span class="frame-corner tr"></span>
+        <span class="frame-corner bl"></span>
+        <span class="frame-corner br"></span>
+        <img src="assets/certs/cert-uxui-decisoes.png" alt="Certificado do workshop UX/UI na Prática: Como Tomar Decisões Reais">
+        <span class="cert-filetag">cert-uxui-decisoes.png</span>
+      </div>
+      <div class="cert-body">
+        <span class="cert-tag">Declaração de Participação</span>
+        <h3>UX/UI na Prática: Como Tomar Decisões Reais (Mesmo Sem Experiência)</h3>
+        <div class="cert-meta">
+          <span>EBAC</span>
+          <span>Karol Oliveira</span>
+          <span>09–10 jun 2026</span>
+          <span>4h</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="cert-card">
+      <div class="cert-thumb">
+        <span class="frame-corner tl"></span>
+        <span class="frame-corner tr"></span>
+        <span class="frame-corner bl"></span>
+        <span class="frame-corner br"></span>
+        <img src="assets/certs/cert-uxui-portfolio-ia.png" alt="Certificado do workshop UX/UI: Crie seu Primeiro Portfólio do Zero Usando IA">
+        <span class="cert-filetag">cert-uxui-portfolio-ia.png</span>
+      </div>
+      <div class="cert-body">
+        <span class="cert-tag">Declaração de Participação</span>
+        <h3>UX/UI: Crie seu Primeiro Portfólio do Zero Usando IA</h3>
+        <div class="cert-meta">
+          <span>EBAC</span>
+          <span>Giovanni Sonnberger</span>
+          <span>16–17 jun 2026</span>
+          <span>4h</span>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<script>
+  const header = document.getElementById('siteHeader');
+  const toggle = document.getElementById('menuToggle');
+  const mobileNav = document.getElementById('mobileNav');
+
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 8);
+  });
+
+  toggle.addEventListener('click', () => {
+    const isOpen = toggle.classList.toggle('open');
+    mobileNav.classList.toggle('open', isOpen);
+    toggle.setAttribute('aria-expanded', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+
+  mobileNav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      toggle.classList.remove('open');
+      mobileNav.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+</script>
+
 </body>
 </html>

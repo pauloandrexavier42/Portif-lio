@@ -432,6 +432,9 @@ section {
     letter-spacing: 0.1em;
     color: var(--accent-color);
     margin-bottom: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .project-name {
@@ -444,6 +447,10 @@ section {
     margin-bottom: 2rem;
     font-size: 1.05rem;
     line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .project-techs {
@@ -505,12 +512,66 @@ section {
     justify-content: center;
     align-items: center;
     box-shadow: 0 -10px 40px rgba(0,0,0,0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle gradient overlay to blend the image into the card */
+.mockup-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(10, 10, 10, 0) 50%, rgba(10, 10, 10, 0.45) 100%);
+    pointer-events: none;
+    z-index: 2;
+    transition: var(--transition-smooth);
 }
 
 .project-card:hover .mockup-container {
     transform: translateY(8%) scale(1.04);
     background: rgba(255, 255, 255, 0.04);
     border-color: rgba(255, 255, 255, 0.1);
+}
+
+.mockup-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    border-radius: inherit;
+    display: block;
+    transition: var(--transition-smooth);
+    z-index: 1;
+}
+
+.project-card:hover .mockup-image {
+    transform: scale(1.06);
+}
+
+/* Specific overrides for Arena XT logo card to prevent cropping */
+.arena-bg .mockup-container {
+    background: #FFFFFF;
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+.arena-bg .mockup-image {
+    object-fit: contain;
+    padding: 1.5rem;
+    background: #FFFFFF;
+}
+
+.arena-bg .mockup-container::after {
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 60%, rgba(10, 10, 10, 0.15) 100%);
+}
+
+/* Nexus: portrait mockup — contain to show full phone interface */
+.nexus-bg .mockup-image {
+    object-fit: contain;
+    object-position: top center;
+    background: transparent;
 }
 
 .mockup-inner {
